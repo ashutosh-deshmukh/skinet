@@ -3,6 +3,8 @@ using Core.Entities;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
+
 namespace Infrastructure.Data
 {
     public class ProductRepository:IProductRepository
@@ -23,6 +25,10 @@ namespace Infrastructure.Data
 
         public async Task<IReadOnlyList<Product>> GetProductsAsync()
         {
+
+            // var typeId = 1;
+            // var products = _context.Products.Where(x=>x.ProductTypeId == typeId)
+            // .Include(x=>x.ProductType).ToListAsync();
             // return await _context.Products.ToListAsync();
             return await _context.Products
             .Include(p=>p.ProductType)
